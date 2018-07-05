@@ -89,7 +89,6 @@
   pdfkeywords={}
 }
 
-
 %-------------------------------------------------------------------------------
 %                Configuration for directory locations
 %-------------------------------------------------------------------------------
@@ -97,13 +96,12 @@
 \newcommand*{\fontdir}[1][fonts/]{\def\@fontdir{#1}}
 \fontdir
 
-
 %-------------------------------------------------------------------------------
 %                Configuration for layout
 %-------------------------------------------------------------------------------
 %% Page Layout
 % Configure page margins with geometry
-\geometry{left=2.0cm, top=1.5cm, right=2.0cm, bottom=2.0cm, footskip=.5cm}
+\geometry{left=1.0cm, top=5.0cm, right=1.0cm, bottom=2.0cm, footskip=.5cm}
 
 %% Header & Footer
 % Set offset to each header and footer
@@ -200,14 +198,14 @@
 \newcommand*{\paragraphstyle}{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text}}
 
 % For elements of entry
-\newcommand*{\entrytitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\entrypositionstyle}[1]{{\fontsize{8pt}{1em}\bodyfont\scshape\color{graytext} #1}}
-\newcommand*{\entrydatestyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
-\newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
-\newcommand*{\descriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text} #1}}
+\newcommand*{\entrytitlestyle}[1]{{\fontsize{12pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\entrypositionstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\scshape\color{graytext} #1}}
+\newcommand*{\entrydatestyle}[1]{{\fontsize{9.5pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
+\newcommand*{\entrylocationstyle}[1]{{\fontsize{9.5pt}{1em}\bodyfontlight\scshape\color{graytext} #1}}
+\newcommand*{\descriptionstyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\upshape\color{text} #1}}
 
 % For elements of subentry
-\newcommand*{\subentrytitlestyle}[1]{{\fontsize{8pt}{1em}\bodyfont\mdseries\color{graytext} #1}}
+\newcommand*{\subentrytitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\mdseries\color{graytext} #1}}
 \newcommand*{\subentrypositionstyle}[1]{{\fontsize{7pt}{1em}\bodyfont\scshape\color{graytext} #1}}
 \newcommand*{\subentrydatestyle}[1]{{\fontsize{7pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
 \newcommand*{\subentrylocationstyle}[1]{{\fontsize{7pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
@@ -220,8 +218,8 @@
 \newcommand*{\honorlocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
 
 % For elements of skill
-\newcommand*{\skilltypestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\skillsetstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\color{text} #1}}
+\newcommand*{\skilltypestyle}[1]{{\fontsize{12pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\skillsetstyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\color{text} #1}}
 
 % For elements of the cover letter
 \newcommand*{\lettersectionstyle}[1]{{\fontsize{14pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
@@ -373,11 +371,11 @@
 \newcommand{\acvHeaderIconSep}{\space}
 \newcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
 \newcommand{\acvHeaderAfterSocialSkip}{6mm}
-\newcommand{\acvHeaderAfterQuoteSkip}{5mm}
+\newcommand{\acvHeaderAfterQuoteSkip}{0mm}
 
 % Others
-\newcommand{\acvSectionTopSkip}{3mm}
-\newcommand{\acvSectionContentTopSkip}{2.5mm}
+\newcommand{\acvSectionTopSkip}{0mm}
+\newcommand{\acvSectionContentTopSkip}{1.0mm}
 
 
 %-------------------------------------------------------------------------------
@@ -555,6 +553,12 @@
   \vspace{2mm}
 }
 
+\newenvironment{cvbare}{%
+    \vspace{-2.0mm}
+  }{%
+  }
+
+
 % Define an environment for cventry
 \newenvironment{cventries}{%
   \vspace{\acvSectionContentTopSkip}
@@ -577,6 +581,48 @@
   \end{tabular*}%
 }
 
+\newcommand*{\college}[8]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \entrytitlestyle{#2} & \entrylocationstyle{#3} \\
+    \entrypositionstyle{#1} & \entrydatestyle{#4} \\
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}\\
+    \subentrytitlestyle{#6} & \entrydatestyle{#7} \\
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#8}}
+  \end{tabular*}%
+}
+
+\newcommand*{\school}[4]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \entrytitlestyle{#2} & \entrylocationstyle{#3} \\
+    \entrypositionstyle{#1} & \entrydatestyle{#4} \\
+  \end{tabular*}%
+}
+
+\newcommand*{\project}[3]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \entrytitlestyle{#1} & \entrydatestyle{#2} \\
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#3}}
+  \end{tabular*}%
+}
+
+\newcommand*{\projectwithsubtitle}[4]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+      \entrytitlestyle{#1}\subentrytitlestyle{#2} & \entrydatestyle{#3} \\
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#4}}
+  \end{tabular*}%
+}
 % Define an environment for cvsubentry
 \newenvironment{cvsubentries}{%
   \begin{center}
@@ -626,7 +672,7 @@
   \begin{center}
     \setlength\tabcolsep{1ex}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.9}}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r C{\textwidth * \real{0.65}}}
 }{%
     \end{tabular*}
   \end{center}
@@ -634,7 +680,7 @@
 % Define a line of cv information(skill)
 % Usage: \cvskill{<type>}{<skillset>}
 \newcommand*{\cvskill}[2]{%
-	\skilltypestyle{#1} & \skillsetstyle{#2} \\
+    \skilltypestyle{Comfortable} \skillsetstyle{#1} & \skilltypestyle{Familiar} \skillsetstyle{#2} \\
 }
 
 % Define an environment for cvitems(for cventry)
@@ -701,3 +747,5 @@
       \letterenclosurestyle{\@letterenclname: \@letterenclosure} \\
     }
 }
+
+
